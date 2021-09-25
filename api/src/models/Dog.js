@@ -7,6 +7,16 @@ module.exports = (sequelize) => {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique:true
     },
+    height:{
+      type: DataTypes.STRING
+    },
+    weight:{
+      type: DataTypes.STRING
+    },
+    life_span:{
+      type: DataTypes.INTEGER
+    }
   });
 };
