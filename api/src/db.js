@@ -1,6 +1,7 @@
 require('dotenv').config();
 const { Sequelize } = require('sequelize');
 const fs = require('fs');
+const axios= require("axios")
 const path = require('path');
 const {
   DB_USER, DB_PASSWORD, DB_HOST,
@@ -31,6 +32,27 @@ sequelize.models = Object.fromEntries(capsEntries);
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
 const { Dog, Temperament } = sequelize.models;
+
+const getTemp =() => axios.get("https://api.thedogapi.com/v1/breeds?api_key=02621b66-92e0-42db-a89a-bca7ba8fb178")
+  .then(async r=>{
+      for(el of r.data){
+          if(el.temperament){
+          const temps=el.temperament.split(", ")
+          for(i=0; i<temps.length; i++){
+              try{
+                  await Temperament.findOrCreate({where:{name:temps[i]}})
+              }catch(e){
+                  console.log(e)
+              }
+          }}
+      }
+  })
+async function checker(){
+  const tabletemp= await Temperament.findByPk(1)
+  if(tabletemp===null) {getTemp()}
+}
+
+checker()
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
