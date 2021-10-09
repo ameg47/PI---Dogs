@@ -1,0 +1,36 @@
+.startcont{
+    display: flex;
+    justify-content:center
+}
+.startdiv{
+    display: flex;
+    justify-content:center;
+    flex-direction: column;
+    margin: 35px;
+    
+}
+
+.startTitle{
+    color:rgb(222, 184, 135)
+}
+.imgstart{
+    border-radius: 5%;
+    width: 80%;
+    filter: drop-shadow(0 0 1rem burlywood);
+}
+.btn{
+    background-color: white;
+    color: burlywood;
+    height: 40px;
+    width: 90px;
+    border-radius: 8%;
+    vertical-align: middle;
+    transition-duration: 0.4s;
+    transition-property: transform;
+  }
+  .btn:hover, .btn:focus, .btn:active {
+    transform: scale(1.2);
+    cursor: pointer;
+  }
+
+

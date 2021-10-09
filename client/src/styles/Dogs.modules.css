@@ -1,0 +1,19 @@
+.container{
+    display: flex;
+    background-color: white;
+    
+}
+.filterbar{
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    padding: 10px;
+    
+}
+ul{
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding-left: 30px;
+}
