@@ -8,7 +8,7 @@ import "../styles/Navbar.modules.css"
 export default function Navbar(props){
     const dispatch= useDispatch()
     const {match: {url}} = props;
-    console.log(url)
+    
     return(
         <nav>
             <div className={"contleft"}>

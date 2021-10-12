@@ -1,0 +1,21 @@
+.btnsrc{
+    background-color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: #3a342d;
+    font-size: 15px;
+    height: 27px;
+    width: 70px;
+    border-radius: 8%;  
+    border: whitesmoke solid;
+    
+
+}
+.btnsrc:hover{
+    cursor: pointer;
+    
+}
+.insrc{
+    height: 20px;
+    margin-right: 5px;
+    width: 250px;
+}

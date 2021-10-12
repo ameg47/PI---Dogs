@@ -11,8 +11,13 @@ export function Dogs({breeds, temps, getBreedsAll, getTemps}){
     const [filter, setFilter]= useState("all")
     const [temp, setTemps]= useState("All")
 
+    
+
     useEffect(()=>{
         getBreedsAll(); getTemps()},[getBreedsAll, getTemps])
+
+    if(breeds==="Breed not found") return (<div className={"loading"}>{breeds}</div>)
+
     if(sorted==="init") breeds.sort(asc)
     
     const handleChangeSort=(e)=> {
@@ -40,7 +45,7 @@ export function Dogs({breeds, temps, getBreedsAll, getTemps}){
     function pagination(pageNumber) {
         setPageNum(pageNumber)
     }
-
+    
     if(displayDogs.length>0){
         return(
         <div className={"container"}>
@@ -73,12 +78,12 @@ export function Dogs({breeds, temps, getBreedsAll, getTemps}){
                 
             </div>
             <div className={"body"}>
-                <Pagination 
+                {listDogs.length>8 ? (<Pagination 
                     dogsperPage={dogsperPage}
                     total={listDogs.length}
                     pagination={pagination}
                     currentPage={pageNumber}
-                />
+                />):null}
                 <ul className={"dogList"}>{displayDogs}</ul>
             </div>
         </div>

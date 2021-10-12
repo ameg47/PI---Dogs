@@ -2,11 +2,51 @@
     display: flex;
     justify-content: center;
     padding-top: 20px;
+    flex-direction: column;
+    color:#402E32;
+    
 }
 
 .form{
     display: flex;
     justify-content: center;
     flex-direction: column;
+    align-items: flex-start;
+    padding-left: 38%;
     
+}
+.divel{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: larger;
+
+}
+
+.btnsub{
+    background-color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: rgb(151, 122, 84);
+    height: 40px;
+    width: 90px;
+    border-radius: 8%;  
+}
+.btnsub:hover{
+    color:#FFF8F0;
+    background-color: #3a342d;
+    cursor: pointer;
+}
+.inptnum{
+    width:80px
+}
+.listtemps{
+    list-style-type: none;
+    margin-top: 3px;
+}
+.eltemp{
+    font-size: smaller;
+    margin: 5px;
+}
+.lbtn{
+    margin-left: 5px;
+    background-color: whitesmoke;
+    border-radius: 5px;
 }

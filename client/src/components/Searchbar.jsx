@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import { getBreedsSearch } from "../actions";
 import { useDispatch } from "react-redux";
+import "../styles/Searchbar.modules.css"
 
 export default function Searchbar(){
     const [name, setName]= useState("")
@@ -24,8 +25,9 @@ export default function Searchbar(){
                 placeholder="Breed name"
                 value={name}
                 onChange={(e)=>handleInputChange(e)}
+                className={"insrc"}
             />
-            <button type="submit">Search</button>
+            <button type="submit" className={"btnsrc"}>Search</button>
         </form>
     )
 }

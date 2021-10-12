@@ -60,66 +60,71 @@ export default function Add(){
     const temps= useSelector((state)=> state.temps)
     return(
         <div className={"formcont"}>
+            <h2>Add Breed</h2>
             <form onSubmit={handleSubmit} className={"form"}>
-                <div>Name: <input type="text" 
+                <div className={"divel"}>Name: <input type="text" 
                     name="name" 
                     value={input.name} 
                     onChange={handleChange} required/></div>
-                <div>
+                <div className={"divel"}>
                     Height: <input type="number"
                     name="height_min"
                     min="1"
                     max="200"
-                    onChange={handleChange} required/>-
+                    onChange={handleChange} required 
+                    className={"inptnum"}/>-
                     <input type="number"
                     name="height_max"
                     min={input.height_min}
                     max="200"
-                    onChange={handleChange} required/> cm
+                    onChange={handleChange} required 
+                    className={"inptnum"}/> cm
                 </div>
-                <div>
+                <div className={"divel"}>
                     Weight: <input type="number"
                     name="weight_min"
                     min="1"
                     max="100"
-                    onChange={handleChange} required/>-
+                    onChange={handleChange} required className={"inptnum"}/>-
                     <input type="number"
                     name="weight_max"
                     min={input.weight_min}
                     max="100"
-                    onChange={handleChange} required/> kg
+                    onChange={handleChange} required className={"inptnum"}/> kg
                 </div>
-                <div>
+                <div className={"divel"}>
                     Life span: <input type="number"
                     name="lifespan_min"
                     min="1"
                     max="30"
-                    onChange={handleChange} required/>-
+                    onChange={handleChange} required
+                    className={"inptnum"}/>-
                     <input type="number"
                     name="lifespan_max"
                     min={input.lifespan_min}
                     max="30"
-                    onChange={handleChange} required/> years
+                    onChange={handleChange} required
+                    className={"inptnum"}/> years
                 </div>
-                <div>Temperament: <select name="temp" onChange={handleChange}>
+                <div className={"divel"}>Temperament: <select name="temp" onChange={handleChange}>
                         {temps && temps.map(e=>{
                             return(<option name={e.name} key={e.id} value={e.id}>
                                 {e.name}
                                 </option>)
                         })}
                     </select>
-                    <ul>
+                    <ul className={"listtemps"}>
                     {input.temp.length>0 && input.temp.map(e=>{
                         return(
-                            <li key={e}>
+                            <li key={e} className={"eltemp"}>
                                 {temps.find(el=>el.id===parseInt(e)).name} 
-                                <button name={e} onClick={handleClick}> X</button>
+                                <button name={e} onClick={handleClick} className={"lbtn"}> X</button>
                             </li>
                         )
                     })}
                     </ul>
                 </div>
-                <input type="submit" value="Add Breed"/>
+                <input type="submit" value="Add Breed" className={"btnsub"}/>
             </form>
         </div>
     )
