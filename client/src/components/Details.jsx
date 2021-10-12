@@ -2,6 +2,8 @@ import React, {useEffect} from "react";
 import { getBreedDetail, cleanDet } from "../actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
+import "../styles/Details.modules.css"
+import image from "../dog.jpeg"
 
 export default function Details(){
     const dispatch=useDispatch()
@@ -25,16 +27,20 @@ export default function Details(){
 
     if(det.name){
     return(
-        <div>
-            <h3>{det.name}</h3>
-            <img src={det.image ? det.image.url:"https://lh3.googleusercontent.com/proxy/PkwyqfERC9fA7dFO52j7FPakxpu2jVk90q-jx-HXhCr8SJ0RVWI__ZcEgteID5CwruEKvpTO9Uj47IZEq1GUf7IvrlhEhm0"} alt="" width="250" height="250"/>
-            <p>{det.weight.metric ? det.weight.metric:det.weight} kg</p>
-            <p>{det.height.metric ? det.height.metric:det.height} cm</p>
-            <p>{det.life_span}</p>
-            <p>{typeof(det.temperament)==="string" ? det.temperament : listT()}</p>
+        <div className={"detcont"}>
+            <div className={"infoconta"}>
+                <h3>{det.name}</h3>
+                <p>Weight: {det.weight.metric ? det.weight.metric:det.weight} kg</p>
+                <p>Height: {det.height.metric ? det.height.metric:det.height} cm</p>
+                <p>Life span: {det.life_span}</p>
+                <p>Temperament: {typeof(det.temperament)==="string" ? det.temperament : listT()}</p>
+            </div>
+            <div className={"imgcont"}>
+                <img src={det.image ? det.image.url:image} alt="" className={"detimg"}/>
+            </div>
         </div>
 
     )}
     //else if (det) return <div>{det}</div>
-    return <div>Loading...</div>
+    return <div className={"loading"}>Loading...</div>
 }

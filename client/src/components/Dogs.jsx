@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {connect} from "react-redux";
 import { getBreedsAll, getTemps } from "../actions";
-import ReactPaginate from "react-paginate";
+import Pagination from "./Pagination";
 import { asc, des, wasc, wdes, mapper } from "./functions_F&S";
 import "../styles/Dogs.modules.css"
 
@@ -14,7 +14,7 @@ export function Dogs({breeds, temps, getBreedsAll, getTemps}){
     useEffect(()=>{
         getBreedsAll(); getTemps()},[getBreedsAll, getTemps])
     if(sorted==="init") breeds.sort(asc)
-
+    
     const handleChangeSort=(e)=> {
         let {value}=e.target
         if(value==="naz") {breeds.sort(asc); setSort(value)}
@@ -37,12 +37,15 @@ export function Dogs({breeds, temps, getBreedsAll, getTemps}){
     const dogsperPage=8
     const pageVisited= pageNumber*dogsperPage
     const displayDogs= listDogs.length>8 ? listDogs.slice(pageVisited, pageVisited+dogsperPage) : listDogs
-    const changePage= ({selected})=> setPageNum(selected)
+    function pagination(pageNumber) {
+        setPageNum(pageNumber)
+    }
+
     if(displayDogs.length>0){
         return(
         <div className={"container"}>
             <div className={"filterbar"}>
-                Sort by:
+                <span className={"filtertitles"}>Sort by:</span>
                 <select onChange={handleChangeSort}>
                     <option>-- Select --</option>
                     <option value="naz">Name: A-Z</option>
@@ -50,13 +53,15 @@ export function Dogs({breeds, temps, getBreedsAll, getTemps}){
                     <option value="was">Weight average: Ascending</option>
                     <option value="wds">Weight average: Descending</option>
                 </select>
-                Filter by:
+                <br/>
+                <span className={"filtertitles"}>Filter by:</span>
+                Origin
                 <select onChange={handleCheck}>
                     <option value="all">All</option>
                     <option value="exist">Existing breeds</option>
-                    <option value="create">Created breeds</option>
+                    <option value="create">Added breeds</option>
                 </select>
-                Temperament:
+                Temperament
                     <select name="temp" onChange={handleChangeTemp}>
                         <option value="All">All</option>
                         {temps.map(e=>{
@@ -67,19 +72,19 @@ export function Dogs({breeds, temps, getBreedsAll, getTemps}){
                  </select>
                 
             </div>
-            <div>
-                <ReactPaginate 
-                   previousLabel={"Previous"}
-                    nextLabel={"Next"}
-                    pageCount= {Math.ceil(listDogs.length/dogsperPage)}
-                    onPageChange={changePage}
+            <div className={"body"}>
+                <Pagination 
+                    dogsperPage={dogsperPage}
+                    total={listDogs.length}
+                    pagination={pagination}
+                    currentPage={pageNumber}
                 />
-                <ul>{displayDogs}</ul>
+                <ul className={"dogList"}>{displayDogs}</ul>
             </div>
         </div>
     )}
     else{
-        return <div>Loading...</div>
+        return <div className={"loading"}>Loading...</div>
     }
 }
 

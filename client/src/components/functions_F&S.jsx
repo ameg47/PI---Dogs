@@ -1,4 +1,6 @@
 import Dog from "./Dog";
+import image from "../dog.jpeg"
+
 export let asc=function(a, b) {
     var nameA = a.name.toUpperCase(); 
     var nameB = b.name.toUpperCase(); 
@@ -74,7 +76,7 @@ export const mapper=(dogs, filt, temp)=>{
         <Dog key={d.id}
         id={d.id}
         name={d.name}
-        img={d.image ? d.image.url:"https://lh3.googleusercontent.com/proxy/PkwyqfERC9fA7dFO52j7FPakxpu2jVk90q-jx-HXhCr8SJ0RVWI__ZcEgteID5CwruEKvpTO9Uj47IZEq1GUf7IvrlhEhm0"}
+        img={d.image ? d.image.url:image}
         temp={d.temperament}
         weight={d.weight.metric ? d.weight.metric: d.weight}
         />

@@ -1,6 +1,10 @@
 .startcont{
     display: flex;
-    justify-content:center
+    justify-content:center;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background-color: whitesmoke;
 }
 .startdiv{
     display: flex;

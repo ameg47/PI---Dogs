@@ -15,12 +15,12 @@ router.get("/dogs", async (req,res)=>{
         name=name.charAt(0).toUpperCase()+ name.slice(1);
         try{
             const list=[]
-            const dogs= await axios.get(`https://api.thedogapi.com/v1/breeds/search?q=${name}&api_key=${API_KEY}`)
+            const dogs= await axios.get(`https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`)
             for(elem of dogs.data){
-                list.push(elem["name"])
+                if(elem.name.includes(name))list.push(elem)
             }
-            const dog= await Dog.findOne({where:{name}});
-            if(dog) list.push(dog.name)
+            const dog= await Dog.findOne({where:{name},include:Temperament});
+            if(dog) list.push(dog)
             if(list.length>0) return res.send(list)
             else return res.send("Breed not found")
         }catch(e){
@@ -30,10 +30,12 @@ router.get("/dogs", async (req,res)=>{
     const list=[]
     
     const dogsapi= await axios.get(`https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`)
-    for(elem of dogsapi.data) list.push(elem["name"])
+    for(elem of dogsapi.data) list.push(elem)
     
-    const dogsdb= await Dog.findAll();
-    for(elem of dogsdb) list.push(elem["name"])
+    const dogsdb= await Dog.findAll({
+        include:Temperament
+      });
+    for(elem of dogsdb) list.push(elem)
     res.send(list)
 })
 
@@ -50,9 +52,9 @@ router.get("/dogs/:id", async(req,res)=>{
 
         const dogs= await axios.get(`https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`)
         for(elem of dogs.data){
-            if (elem["id"]===parseInt(id)) return res.send(elem)
+            if (elem.id===parseInt(id)) return res.json(elem)
         }
-        res.send("Breed details not found")
+        res.json("Breed details not found")
     }catch(e){
         console.log(e)
     }
@@ -64,18 +66,18 @@ router.get("/temperament", async (req,res)=>{
 })
 
 router.post("/dog", async (req, res)=>{
-    const {name, height, weight, life_span, temperaments}= req.body
+    const {name, height_min, height_max, weight_min, weight_max, lifespan_min, lifespan_max, temp}= req.body
     
     try{
         const [dog, created]= await Dog.findOrCreate({
             where: {
                 name:name,
-                height:height,
-                weight:weight,
-                life_span:life_span
+                height:`${height_min} - ${height_max}`,
+                weight:`${weight_min} - ${weight_max}`,
+                life_span:`${lifespan_min} - ${lifespan_max} years`
             }
         })
-        await dog.addTemperaments(temperaments)
+        await dog.addTemperaments(temp)
         res.send(dog)
     }catch(e){
         console.log(e)

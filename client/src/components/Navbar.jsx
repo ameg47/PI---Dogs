@@ -5,8 +5,10 @@ import { useDispatch } from "react-redux";
 import { getBreedsAll } from "../actions";
 import "../styles/Navbar.modules.css"
 
-export default function Navbar(){
+export default function Navbar(props){
     const dispatch= useDispatch()
+    const {match: {url}} = props;
+    console.log(url)
     return(
         <nav>
             <div className={"contleft"}>
@@ -20,11 +22,11 @@ export default function Navbar(){
                 <Link to="/add" className={"link"}>
                     <span className={"navbtn"}>Add breed</span>
                 </Link>
+                </div>
             </div>
-            </div>
-            <div className={"searchbar"}>
+            {url==="/dogs" ? (<div className={"searchbar"}>
                 <Searchbar />
-            </div>
+            </div>):null}
         </nav>
     )
 }

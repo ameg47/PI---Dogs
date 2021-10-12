@@ -11,7 +11,7 @@ export function Start() {
     return(
         <div className={"startcont"}>
             <div className={"startdiv"}>
-                <h1 className={"startTitle"}>Welcome to the Dog Database!</h1>
+                <h1 className={"startTitle"}>Welcome to the Dog Database</h1>
                 <div>
                 <Link to="/dogs"><button onClick={handleClick} className={"btn"}>START</button></Link>
                 </div>

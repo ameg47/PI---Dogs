@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import { getTemps } from "../actions";
 import { useDispatch, useSelector } from "react-redux";
+import "../styles/Add.modules.css"
 
 export default function Add(){
     const dispatch= useDispatch()
@@ -58,8 +59,8 @@ export default function Add(){
     useEffect(()=>{dispatch(getTemps())},[dispatch])
     const temps= useSelector((state)=> state.temps)
     return(
-        <div>
-            <form onSubmit={handleSubmit}>
+        <div className={"formcont"}>
+            <form onSubmit={handleSubmit} className={"form"}>
                 <div>Name: <input type="text" 
                     name="name" 
                     value={input.name} 
@@ -69,40 +70,38 @@ export default function Add(){
                     name="height_min"
                     min="1"
                     max="200"
-                    onChange={handleChange}/>-
+                    onChange={handleChange} required/>-
                     <input type="number"
                     name="height_max"
                     min={input.height_min}
                     max="200"
-                    onChange={handleChange}/> cm
+                    onChange={handleChange} required/> cm
                 </div>
                 <div>
                     Weight: <input type="number"
                     name="weight_min"
                     min="1"
                     max="100"
-                    onChange={handleChange}/>-
+                    onChange={handleChange} required/>-
                     <input type="number"
                     name="weight_max"
                     min={input.weight_min}
                     max="100"
-                    onChange={handleChange}/> kg
+                    onChange={handleChange} required/> kg
                 </div>
                 <div>
-                    Life span:
-                    <input type="number"
+                    Life span: <input type="number"
                     name="lifespan_min"
                     min="1"
                     max="30"
-                    onChange={handleChange}/>-
+                    onChange={handleChange} required/>-
                     <input type="number"
                     name="lifespan_max"
                     min={input.lifespan_min}
                     max="30"
-                    onChange={handleChange}/> years
+                    onChange={handleChange} required/> years
                 </div>
-                <div>Temperament:
-                    <select name="temp" onChange={handleChange}>
+                <div>Temperament: <select name="temp" onChange={handleChange}>
                         {temps && temps.map(e=>{
                             return(<option name={e.name} key={e.id} value={e.id}>
                                 {e.name}
@@ -113,7 +112,7 @@ export default function Add(){
                     {input.temp.length>0 && input.temp.map(e=>{
                         return(
                             <li key={e}>
-                                {temps.find(el=>el.id===parseInt(e)).name}
+                                {temps.find(el=>el.id===parseInt(e)).name} 
                                 <button name={e} onClick={handleClick}> X</button>
                             </li>
                         )

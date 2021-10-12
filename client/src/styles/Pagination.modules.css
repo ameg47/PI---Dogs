@@ -1,0 +1,47 @@
+.pagination{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+.paginationBtns{
+    height: 50px;
+    padding-left: 0;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    
+}
+.num{
+    padding:10px;
+    margin:5px;
+    border-radius: 3px;
+    border:1px solid black;
+    color:#402E32;
+    background-color: white;
+    cursor: pointer;
+}
+
+.active, .num:hover, .prevnext:hover{
+    color:#FFF8F0;
+    background-color: #3a342d;
+
+}
+
+/* .num:active{
+    background-color: #3a342d;
+    color:#FFF8F0;
+    font-size: larger;
+} */
+
+.prevnext{
+    height: 40px;
+    padding:10px;
+    margin: 5px;
+    border-radius: 3px;
+    border:1px solid black;
+    color:#402E32;
+    background-color: white;
+    cursor: pointer;
+
+}

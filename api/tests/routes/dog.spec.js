@@ -7,9 +7,10 @@ const { Dog, conn } = require('../../src/db.js');
 const agent = session(app);
 const dog = {
   name: 'Pug',
+  id:"d03301da-2b61-11ec-8d3d-0242ac130003"
 };
 
-describe('Videogame routes', () => {
+describe('Dogs routes', () => {
   before(() => conn.authenticate()
   .catch((err) => {
     console.error('Unable to connect to the database:', err);
@@ -19,6 +20,18 @@ describe('Videogame routes', () => {
   describe('GET /dogs', () => {
     it('should get 200', () =>
       agent.get('/dogs').expect(200)
+    );
+  });
+  describe('GET /dogs', () => {
+    it('content type should be json', () =>
+      agent.get('/dogs').expect('Content-Type', /json/)
+    );
+  });
+  describe('GET /dogs/:id', () => {
+    it('should get right dog by id', () =>
+      agent.get('/dogs/d03301da-2b61-11ec-8d3d-0242ac130003').expect(function(res){
+        expect(res.body.name).to.eql("Pug")
+      })
     );
   });
 });

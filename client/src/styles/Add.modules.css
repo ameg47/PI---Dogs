@@ -1,0 +1,12 @@
+.formcont{
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+}
+
+.form{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    
+}

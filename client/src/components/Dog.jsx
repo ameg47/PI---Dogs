@@ -8,9 +8,10 @@ export default function Dog(props){
         <div className={"card"}>
             <h4 className={"dogname"}>{props.name}</h4>
             <img src={props.img} alt="" className={"imgcard"}/>
-            {/* <p>{props.weight} kg</p>
-            <p>{props.temp}</p> */}
-            
+            <div className={"infocont"}>
+                <p className={"info"}>Weight: {props.weight} kg </p>
+                <p className={"info"}>{props.temp}</p>
+            </div>
         </div>
         </Link>
     )
