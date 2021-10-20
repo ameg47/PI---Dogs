@@ -49,9 +49,22 @@ export let wdes=function(b, a) {
   return 0;
 }
 
+export let lifeasc= function(a, b) {
+  var lifeA = average(a.life_span) 
+  var lifeB = average(b.life_span)
+  if (lifeA < lifeB) {
+    return -1;
+  }
+  if (lifeA > lifeB) {
+    return 1;
+  }
+  return 0;
+}
 function average(weight){
   const weight_num= weight.split(" - ")
-  if (weight_num.length>1) {return (parseInt(weight_num[1])+parseInt(weight_num[0]))/2}
+  if(weight_num[0]==="NaN"){weight_num[0]=weight_num[1]}
+  if(weight==="NaN") {return 0}
+  if (weight_num.length>1) {return Math.ceil((parseInt(weight_num[1])+parseInt(weight_num[0]))/2)}
   else return parseInt(weight)
 }
 

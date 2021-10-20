@@ -22,7 +22,7 @@ router.get("/dogs", async (req,res)=>{
             const dog= await Dog.findOne({where:{name},include:Temperament});
             if(dog) list.push(dog)
             if(list.length>0) return res.send(list)
-            else return res.send("Breed not found")
+            else return res.json("Breed not found")
         }catch(e){
             console.log(e)
         }
@@ -66,7 +66,8 @@ router.get("/temperament", async (req,res)=>{
 })
 
 router.post("/dog", async (req, res)=>{
-    const {name, height_min, height_max, weight_min, weight_max, lifespan_min, lifespan_max, temp}= req.body
+    let {name, height_min, height_max, weight_min, weight_max, lifespan_min, lifespan_max, temp}= req.body
+    name=name.charAt(0).toUpperCase()+ name.slice(1);
     
     try{
         const [dog, created]= await Dog.findOrCreate({

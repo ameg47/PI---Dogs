@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {connect} from "react-redux";
 import { getBreedsAll, getTemps } from "../actions";
 import Pagination from "./Pagination";
-import { asc, des, wasc, wdes, mapper } from "./functions_F&S";
+import { asc, des, wasc, wdes, mapper, lifeasc } from "./functions_F&S";
 import "../styles/Dogs.modules.css"
 
 export function Dogs({breeds, temps, getBreedsAll, getTemps}){
@@ -26,6 +26,7 @@ export function Dogs({breeds, temps, getBreedsAll, getTemps}){
         if(value==="nza") {breeds.sort(des);setSort(value)}
         if(value==="was") {breeds.sort(wasc); setSort(value)}
         if(value==="wds") {breeds.sort(wdes); setSort(value)}
+        if(value==="lif") {breeds.sort(lifeasc); setSort(value)}
     }
     
     const handleCheck=(e)=>{
@@ -57,6 +58,7 @@ export function Dogs({breeds, temps, getBreedsAll, getTemps}){
                     <option value="nza">Name: Z-A</option>
                     <option value="was">Weight average: Ascending</option>
                     <option value="wds">Weight average: Descending</option>
+                    <option value="lif">Life span average</option>
                 </select>
                 <br/>
                 <span className={"filtertitles"}>Filter by:</span>

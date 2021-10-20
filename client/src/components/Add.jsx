@@ -106,7 +106,7 @@ export default function Add(){
                     onChange={handleChange} required
                     className={"inptnum"}/> years
                 </div>
-                <div className={"divel"}>Temperament: <select name="temp" onChange={handleChange}>
+                <div className={"divel"}>Temperament: <select name="temp" onChange={handleChange} >
                         {temps && temps.map(e=>{
                             return(<option name={e.name} key={e.id} value={e.id}>
                                 {e.name}
